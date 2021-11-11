@@ -1,0 +1,62 @@
+{
+  "chrome": {
+    "default": "92.0",
+    "versions": {
+      "89.0-ecp": {
+        "tmpfs": {"/tmp": "size=1324m"},
+        "image": "git.fabrikant.ru:4567/automation-and-quality/selenoid-browser-images/chrome:89.0-ecp-new",
+        "port": "4444",
+        "path": "/",
+        "env" : ["TZ=Europe/Moscow"],
+        "shmSize" : 536870912,
+        "hosts" : ["admin20.fabrikant.ru:10.31.82.130", "admin-stage.fabrikant.ru:10.31.82.130"],
+        "additionalNetworks": ["host"]
+      },
+      "90.0": {
+        "tmpfs": {"/tmp": "size=1324m"},
+        "image": "selenoid/chrome:90.0",
+        "port": "4444",
+        "path": "/",
+        "env" : ["TZ=Europe/Moscow"],
+        "shmSize" : 536870912,
+        "hosts" : ["admin20.fabrikant.ru:10.31.82.130", "admin-stage.fabrikant.ru:10.31.82.130"],
+        "additionalNetworks": ["host"]
+      },
+      "91.0-ecp": {
+        "tmpfs": {"/tmp": "size=1324m"},
+        "image": "git.fabrikant.ru:4567/automation-and-quality/selenoid-browser-images/chrome:91.0-ecp-new",
+        "port": "4444",
+        "path": "/",
+        "env" : ["TZ=Europe/Moscow"],
+        "shmSize" : 536870912,
+        "hosts" : ["admin20.fabrikant.ru:10.31.82.130", "admin-stage.fabrikant.ru:10.31.82.130"],
+        "additionalNetworks": ["host"]
+      },
+      "92.0": {
+        "tmpfs": {"/tmp": "size=1324m"},
+        "image": "selenoid/chrome:92.0",
+        "port": "4444",
+        "path": "/",
+        "env" : ["TZ=Europe/Moscow"],
+        "shmSize" : 536870912,
+        "hosts" : ["admin20.fabrikant.ru:10.31.82.130", "admin-stage.fabrikant.ru:10.31.82.130"],
+        "additionalNetworks": ["host"]
+      }
+    }
+  },
+  "firefox": {
+    "default": "87.0",
+    "versions": {
+      "87.0": {
+        "tmpfs": {"/tmp": "size=1024m"},
+        "image": "selenoid/firefox:87.0",
+        "port": "4444",
+        "path": "/wd/hub",
+        "env" : ["TZ=Europe/Moscow"],
+        "shmSize" : 536870912,
+        "hosts" : ["admin20.fabrikant.ru:10.31.82.130", "admin-stage.fabrikant.ru:10.31.82.130"],
+        "additionalNetworks": ["host"]
+      }
+    }
+  }
+}

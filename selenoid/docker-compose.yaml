@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  selenoid:
+    image: aerokube/selenoid:1.10.6
+    container_name: selenoid
+    network_mode: bridge
+    ports:
+      - "4444:4444"
+    volumes:
+      - "/root/selenoid/config:/etc/selenoid"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    command: ["-conf", "/etc/selenoid/browsers.json",
+              "-limit", "${LIMIT}",
+              "-cpu", "1.7",
+              "-mem", "2200m",
+              "-retry-count", "15",
+              "-service-startup-timeout", "2m",
+              "-session-attempt-timeout", "3m",
+              "-timeout", "7m"]
+    environment:
+      - TZ="Europe/Moscow"
+    restart: always
+  selenoid-ui:
+    image: aerokube/selenoid-ui:1.10.4
+    container_name: selenoid-ui
+    network_mode: bridge
+    links:
+      - selenoid
+    depends_on:
+      - selenoid
+    ports:
+      - "8080:8080"
+    command: ["--selenoid-uri", "http://selenoid:4444"]
+    restart: always
