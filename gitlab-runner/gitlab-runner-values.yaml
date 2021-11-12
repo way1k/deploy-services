@@ -1,5 +1,5 @@
-gitlabUrl: https://git.fabrikant.ru/
-runnerRegistrationToken: "57eybxiHxSeyq8QgAsxF"
+gitlabUrl: https://gitlab.com/
+runnerRegistrationToken: "UfpHeViSaedr97RoqNxQ"
 terminationGracePeriodSeconds: 3600
 concurrent: 10
 checkInterval: 0

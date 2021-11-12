@@ -6,7 +6,7 @@ check_interval = 0
 
 [[runners]]
     name = "pytest-runner"
-    url = "https://git.fabrikant.ru/"
+    url = "https://gitlab.com/"
     token = ""
     request_concurrency = 10
     executor = "docker"
