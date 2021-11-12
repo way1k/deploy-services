@@ -41,7 +41,7 @@ selenoid-62:
       when: manual
   script:
     - echo "$SSH_PRIVATE_KEY"
-    - echo "SSH_USER"
+    - echo "$SSH_USER"
     - scp -r -o StrictHostKeyChecking=no ./selenoid $SSH_USER@$SSH_MACHINE_62:/root
     - ssh $SSH_USER@$SSH_MACHINE_62 "export LIMIT=2 && cd selenoid && docker-compose down && docker-compose rm -f && docker-compose up -d"
     - ssh $SSH_USER@$SSH_MACHINE_62 "cat /root/selenoid/config/browsers.json  | jq -r '..|.image?|strings' | xargs -I{} docker pull {}"
