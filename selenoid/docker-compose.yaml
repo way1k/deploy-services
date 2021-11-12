@@ -1,5 +1,6 @@
 version: "3.8"
 
+
 services:
   selenoid:
     image: aerokube/selenoid:1.10.6
