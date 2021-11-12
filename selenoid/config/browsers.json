@@ -8,7 +8,7 @@
         "port": "4444",
         "path": "/",
         "env" : ["TZ=Europe/Moscow"],
-        "shmSize" : 536870912,
+        "shmSize" : 536870912
       },
       "92.0": {
         "tmpfs": {"/tmp": "size=1324m"},
@@ -16,7 +16,7 @@
         "port": "4444",
         "path": "/",
         "env" : ["TZ=Europe/Moscow"],
-        "shmSize" : 536870912,
+        "shmSize" : 536870912
       }
     }
   },
@@ -29,7 +29,7 @@
         "port": "4444",
         "path": "/wd/hub",
         "env" : ["TZ=Europe/Moscow"],
-        "shmSize" : 536870912,
+        "shmSize" : 536870912
       }
     }
   }
