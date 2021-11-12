@@ -1,0 +1,48 @@
+gitlabUrl: https://git.fabrikant.ru/
+runnerRegistrationToken: "57eybxiHxSeyq8QgAsxF"
+terminationGracePeriodSeconds: 3600
+concurrent: 10
+checkInterval: 0
+imagePullPolicy: Always
+
+## For RBAC support:
+rbac:
+  create: true
+  resources: ["pods", "pods/exec", "secrets"]
+  verbs: ["get", "list", "watch", "create", "patch", "delete"]
+  clusterWideAccess: true
+
+runners:
+  image: docker
+  privileged: true
+
+  imagePullSecrets:
+    - name: gitlab-registry
+
+  pollTimeout: 1800
+  namespace: gitlab-runners
+  outputLimit: 4096
+
+  ## Build specific configuration
+  ##
+  builds:
+    cpuLimit: 200m
+    memoryLimit: 256Mi
+    cpuRequests: 300m
+    memoryRequests: 1000Mi
+
+  ## Service Container specific configuration
+  ##
+  services:
+    cpuLimit: 200m
+    memoryLimit: 256Mi
+    cpuRequests: 300m
+    memoryRequests: 1000Mi
+
+  ## Helpers specific configuration
+  ##
+  helpers:
+    cpuLimit: 200m
+    memoryLimit: 256Mi
+    cpuRequests: 300m
+    memoryRequests: 1000Mi

@@ -1,0 +1,32 @@
+concurrent = 10
+check_interval = 0
+
+[session_server]
+    session_timeout = 7200
+
+[[runners]]
+    name = "pytest-runner"
+    url = "https://git.fabrikant.ru/"
+    token = ""
+    request_concurrency = 10
+    executor = "docker"
+    environment = ["TZ=Europe/Moscow"]
+    [runners.custom_build_dir]
+        [runners.cache]
+        [runners.cache.s3]
+        [runners.cache.gcs]
+    [runners.docker]
+        tls_verify = false
+        image = "docker:20.10"
+        memory = "8000m"
+        memory_swap = "8400m"
+        memory_reservation = "768m"
+        cpus = "14"
+        privileged = true
+        disable_entrypoint_overwrite = false
+        oom_kill_disable = false
+        disable_cache = false
+        volumes = ["/var/run/docker.sock:/var/run/docker.sock", "/cache"]
+        pull_policy = ["always", "if-not-present"]
+        network_mode = "host"
+        shm_size = 0
