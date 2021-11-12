@@ -10,7 +10,6 @@ stages:
     - mkdir -p ~/.ssh
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
     - chmod 700 ~/.ssh/id_rsa
-    - chmod -R 777 ./selenoid
     - eval "$(ssh-agent -s)"
     - ssh-add ~/.ssh/id_rsa
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
@@ -32,7 +31,7 @@ stages:
 #    - ssh $SSH_USER@$SSH_MACHINE_210 "export LIMIT=12 && cd selenoid && docker-compose down && docker-compose rm -f && docker-compose up -d"
 #    - ssh $SSH_USER@$SSH_MACHINE_210 "cat /root/selenoid/config/browsers.json  | jq -r '..|.image?|strings' | xargs -I{} docker pull {}"
 
-selenoid-62:
+deploy-selenoid-62:
   stage: deploy
   extends: .ssh-base
   variables:
@@ -43,13 +42,7 @@ selenoid-62:
     - if: '$CI_PIPELINE_SOURCE == "push"'
       when: manual
   script:
-    - echo "$SSH_PRIVATE_KEY"
-    - echo "$SSH_USER"
-    - echo "$SSH_MACHINE_62"
-    - ssh $SSH_USER@$SSH_MACHINE_62 "echo "hello!""
     - scp -r -o StrictHostKeyChecking=no ./selenoid $SSH_USER@$SSH_MACHINE_62:~
-#    - sudo scp -r -o StrictHostKeyChecking=no ./selenoid $SSH_USER@$SSH_MACHINE_62:/root
-    - ssh $SSH_USER@$SSH_MACHINE_62 "cd ~/selenoid && ls -lah"
     - ssh $SSH_USER@$SSH_MACHINE_62 "docker-compose --version"
     - ssh $SSH_USER@$SSH_MACHINE_62 "export LIMIT=2 && cd ~/selenoid && docker-compose down && docker-compose rm -f && docker-compose up -d"
     - ssh $SSH_USER@$SSH_MACHINE_62 "cat ~/selenoid/config/browsers.json  | jq -r '..|.image?|strings' | xargs -I{} docker pull {}"
