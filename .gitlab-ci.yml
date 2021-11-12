@@ -44,14 +44,8 @@ selenoid-62:
     - echo "$SSH_PRIVATE_KEY"
     - echo "$SSH_USER"
     - echo "$SSH_MACHINE_62"
-#    - ls ./selenoid -lah
-#    - pwd
-#    - ls -lah
-#    - cd ~
-#    - pwd
-#    - ls -lah
     - ssh $SSH_USER@$SSH_MACHINE_62 "echo "hello!""
-    - scp -r ./selenoid $SSH_USER@$SSH_MACHINE_62:~
-    - sudo scp -r -o StrictHostKeyChecking=no ./selenoid $SSH_USER@$SSH_MACHINE_62:/root
+    - scp -r -o StrictHostKeyChecking=no ./selenoid $SSH_USER@$SSH_MACHINE_62:~
+#    - sudo scp -r -o StrictHostKeyChecking=no ./selenoid $SSH_USER@$SSH_MACHINE_62:/root
     - ssh $SSH_USER@$SSH_MACHINE_62 "export LIMIT=2 && cd selenoid && docker-compose down && docker-compose rm -f && docker-compose up -d"
-    - ssh $SSH_USER@$SSH_MACHINE_62 "cat /root/selenoid/config/browsers.json  | jq -r '..|.image?|strings' | xargs -I{} docker pull {}"
+    - ssh $SSH_USER@$SSH_MACHINE_62 "cat ~/selenoid/config/browsers.json  | jq -r '..|.image?|strings' | xargs -I{} docker pull {}"
