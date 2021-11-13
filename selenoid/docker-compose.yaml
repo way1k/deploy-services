@@ -13,7 +13,7 @@ services:
     command: ["-conf", "/etc/selenoid/browsers.json",
               "-limit", "${LIMIT}",
               "-cpu", "1",
-              "-mem", "550m",
+              "-mem", "400m",
               "-retry-count", "15",
               "-service-startup-timeout", "2m",
               "-session-attempt-timeout", "3m",
