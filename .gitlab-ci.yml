@@ -32,6 +32,8 @@ stages:
 deploy-selenoid-244:
   stage: deploy
   extends: .ssh-base
+  tags:
+    - common-18
   variables:
     SSH_PRIVATE_KEY: $SSH_AMD_PRIVATE_KEY_244
   rules:
