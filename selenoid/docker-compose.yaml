@@ -12,8 +12,8 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
     command: ["-conf", "/etc/selenoid/browsers.json",
               "-limit", "${LIMIT}",
-              "-cpu", "0.7",
-              "-mem", "500m",
+              "-cpu", "1",
+              "-mem", "550m",
               "-retry-count", "15",
               "-service-startup-timeout", "2m",
               "-session-attempt-timeout", "3m",
