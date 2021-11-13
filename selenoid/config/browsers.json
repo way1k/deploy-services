@@ -3,20 +3,20 @@
     "default": "92.0",
     "versions": {
       "90.0": {
-        "tmpfs": {"/tmp": "size=1324m"},
+        "tmpfs": {"/tmp": "size=256m"},
         "image": "selenoid/chrome:90.0",
         "port": "4444",
         "path": "/",
         "env" : ["TZ=Europe/Moscow"],
-        "shmSize" : 536870912
+        "shmSize" : 268435456
       },
       "92.0": {
-        "tmpfs": {"/tmp": "size=1324m"},
+        "tmpfs": {"/tmp": "size=256m"},
         "image": "selenoid/chrome:92.0",
         "port": "4444",
         "path": "/",
         "env" : ["TZ=Europe/Moscow"],
-        "shmSize" : 536870912
+        "shmSize" : 268435456
       }
     }
   },
@@ -24,12 +24,12 @@
     "default": "87.0",
     "versions": {
       "87.0": {
-        "tmpfs": {"/tmp": "size=1024m"},
+        "tmpfs": {"/tmp": "size=256m"},
         "image": "selenoid/firefox:87.0",
         "port": "4444",
         "path": "/wd/hub",
         "env" : ["TZ=Europe/Moscow"],
-        "shmSize" : 536870912
+        "shmSize" : 268435456
       }
     }
   }
