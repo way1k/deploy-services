@@ -31,9 +31,9 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: allure
-      PGDATA: /data/postgres
-    volumes:
-      - volume_postgres:/data/postgres
+#      PGDATA: /data/postgres
+#    volumes:
+#      - volume_postgres:/data/postgres
     ports:
       - 5432:5432
     restart: unless-stopped
