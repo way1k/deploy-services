@@ -1,0 +1,75 @@
+version: "3.8"
+
+services:
+
+  allure-server:
+    # For local debug #
+    # build: .
+    container_name: allure-server
+    image: kochetkovma/allure-server:2.9.1
+    environment:
+      SPRING_DATASOURCE_URL: ${POSTGRES_URL}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      SPRING_JPA_DATABASE: postgresql
+      SPRING_JPA_HIBERNATE_DDL-AUTO: update # Careful! 'create' destroy data! https://stackoverflow.com/questions/21113154/spring-boot-ddl-auto-generator
+    ports:
+      - ${ALLURE_SERVER_PORT}:8080
+    volumes:
+      - volume_ext:/ext:rw
+      - volume_allure_server:/allure:rw
+#      - ./ext:/ext:rw
+#      - ./allure-server-store:/allure:rw
+    restart: unless-stopped
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: allure-postgres-db
+    image: postgres:14.1-alpine3.14
+    environment:
+      POSTGRES_USER: postgres ${POSTGRES_USER}
+      POSTGRES_PASSWORD: postgres ${POSTGRES_PASSWORD}
+      POSTGRES_DB: allure
+      PGDATA: /data/postgres
+    volumes:
+      - volume_postgres:/data/postgres
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+
+
+volumes:
+  volume_postgres:
+  volume_ext:
+  volume_allure_server:
+
+#  report:
+#    image: allure/allure-report:${VERSION}
+#    environment:
+#      ALLURE_ENDPOINT: ${ENDPOINT}
+#      ALLURE_CRYPTO_PASSWORD: ${REPORT_CRYPTO}
+#      # database
+#      SPRING_DATASOURCE_URL: ${REPORT_POSTGRES_URL}
+#      SPRING_DATASOURCE_USERNAME: ${REPORT_POSTGRES_USERNAME}
+#      SPRING_DATASOURCE_PASSWORD: ${REPORT_POSTGRES_PASSWORD}
+#      # rabbitmq
+#      SPRING_RABBITMQ_HOST: ${REPORT_RABBITMQ_HOST}
+#      SPRING_RABBITMQ_USERNAME: ${REPORT_RABBITMQ_USERNAME}
+#      SPRING_RABBITMQ_PASSWORD: ${REPORT_RABBITMQ_PASSWORD}
+#      SPRING_RABBITMQ_VIRTUAL_HOST: ${REPORT_RABBITMQ_VHOST}
+#    volumes:
+#      - report-storage-volume:/storage
+#    depends_on:
+#      - report-db
+#      - report-mq
+#
+#  report-db:
+#    image: postgres:12.8
+#    volumes:
+#      - report-db-volume:/var/lib/postgresql/data
+#
+#    environment:
+#      POSTGRES_DB: report
+#      POSTGRES_USER: ${REPORT_POSTGRES_USERNAME}
+#      POSTGRES_PASSWORD: ${REPORT_POSTGRES_PASSWORD}

@@ -21,6 +21,7 @@ services:
     environment:
       - TZ="Europe/Moscow"
     restart: always
+
   selenoid-ui:
     image: aerokube/selenoid-ui:1.10.4
     container_name: selenoid-ui
