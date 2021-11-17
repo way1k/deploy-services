@@ -18,7 +18,7 @@ services:
     volumes:
       - volume_ext:/ext:rw
       - volume_allure_server:/allure:rw
-#    restart: unless-stopped
+    restart: unless-stopped
     depends_on:
       - postgres
 
