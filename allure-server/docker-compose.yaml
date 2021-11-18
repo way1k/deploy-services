@@ -8,12 +8,17 @@ services:
     container_name: allure-server
     image: kochetkovma/allure-server:2.9.1
     environment:
-      TZ: Europe/Moscow
-      SPRING_DATASOURCE_URL: ${POSTGRES_URL}
-      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
-      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
-      SPRING_JPA_DATABASE: postgresql
-      SPRING_JPA_HIBERNATE_DDL-AUTO: update # Careful! 'create' destroy data! https://stackoverflow.com/questions/21113154/spring-boot-ddl-auto-generator
+      - TZ="Europe/Moscow"
+      - SPRING_DATASOURCE_URL=${POSTGRES_URL}
+      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
+      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+      - SPRING_JPA_DATABASE="postgresql"
+      - SPRING_JPA_HIBERNATE_DDL-AUTO="update"
+#      SPRING_DATASOURCE_URL: ${POSTGRES_URL}
+#      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+#      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+#      SPRING_JPA_DATABASE: postgresql
+#      SPRING_JPA_HIBERNATE_DDL-AUTO: update # Careful! 'create' destroy data! https://stackoverflow.com/questions/21113154/spring-boot-ddl-auto-generator
     ports:
       - ${ALLURE_SERVER_PORT}:8080
     volumes:
@@ -27,10 +32,12 @@ services:
     container_name: allure-postgres-db
     image: postgres:14.1-alpine3.14
     environment:
-      TZ: Europe/Moscow
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: allure
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB="allure"
+#      POSTGRES_USER: ${POSTGRES_USER}
+#      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+#      POSTGRES_DB: allure
     volumes:
       - volume_postgres:/var/lib/postgresql/data
     ports:
