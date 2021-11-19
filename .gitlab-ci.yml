@@ -18,15 +18,15 @@ allure-server-244:
   stage: deploy
   extends: .ssh-base
   variables:
-    SSH_PRIVATE_KEY: $SSH_AMD_PRIVATE_KEY_244
+    SSH_PRIVATE_KEY: $SSH_AMD_PRIVATE_KEY_89
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "merge_request_event"'
       when: never
     - if: '$CI_PIPELINE_SOURCE == "push"'
       when: manual
   script:
-    - rsync -avzP ./allure-server/ $SSH_USER@$SSH_AMD_MACHINE_244:~/allure-server
-    - ssh $SSH_USER@$SSH_AMD_MACHINE_244 "cd ~/allure-server && docker-compose down && docker-compose up -d"
+    - rsync -avzP ./allure-server/ $SSH_USER@$SSH_AMD_MACHINE_89:~/allure-server
+    - ssh $SSH_USER@$SSH_AMD_MACHINE_89 "cd ~/allure-server && docker-compose down && docker-compose up -d"
 
 deploy-selenoid-244:
   stage: deploy
