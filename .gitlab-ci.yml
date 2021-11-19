@@ -14,7 +14,7 @@ stages:
 
 ### Deployment jobs ###
 
-allure-server-244:
+allure-server-89:
   stage: deploy
   extends: .ssh-base
   variables:
