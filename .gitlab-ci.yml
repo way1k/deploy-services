@@ -44,5 +44,5 @@ deploy-selenoid-244:
       when: manual
   script:
     - scp -r -o StrictHostKeyChecking=no ./selenoid $SSH_USER@$SSH_AMD_MACHINE_244:~
-    - ssh $SSH_USER@$SSH_AMD_MACHINE_244 "export LIMIT=2 && cd ~/selenoid && docker-compose down && docker-compose rm -f && docker-compose up -d"
+    - ssh $SSH_USER@$SSH_AMD_MACHINE_244 "export LIMIT=1 && cd ~/selenoid && docker-compose down && docker-compose rm -f && docker-compose up -d"
     - ssh $SSH_USER@$SSH_AMD_MACHINE_244 "cat ~/selenoid/config/browsers.json  | jq -r '..|.image?|strings' | xargs -I{} docker pull {}"
