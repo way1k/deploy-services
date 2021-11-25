@@ -1,3 +1,5 @@
-# Deploy services
+# Deploy Services
 
-test
+Репозиторий содержит настройки и CI для развертывания сервисов.
+
+
