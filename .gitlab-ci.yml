@@ -14,11 +14,11 @@ stages:
 
 ### Deployment jobs ###
 
-allure-server-89:
+allure-server:
   stage: deploy
   extends: .ssh-base
   tags:
-    - common-255
+    - common-170
   variables:
     SSH_PRIVATE_KEY: $SSH_AMD_PRIVATE_KEY_89
   rules:
@@ -27,14 +27,14 @@ allure-server-89:
     - if: '$CI_PIPELINE_SOURCE == "push"'
       when: manual
   script:
-    - rsync -avzP ./allure-server/ $SSH_USER@$SSH_AMD_MACHINE_89:~/allure-server
-    - ssh $SSH_USER@$SSH_AMD_MACHINE_89 "cd ~/allure-server && docker-compose down && docker-compose up -d"
+    - rsync -avzP ./allure-server/ $SSH_USER_HOSTKEY@$SSH_MACHINE_HOSTKEY:~/allure-server
+    - ssh $SSH_USER_HOSTKEY@$SSH_MACHINE_HOSTKEY "cd ~/allure-server && docker-compose down && docker-compose up -d"
 
-deploy-selenoid-244:
+deploy-selenoid:
   stage: deploy
   extends: .ssh-base
   tags:
-    - common-255
+    - common-170
   variables:
     SSH_PRIVATE_KEY: $SSH_AMD_PRIVATE_KEY_244
   rules:
@@ -43,6 +43,6 @@ deploy-selenoid-244:
     - if: '$CI_PIPELINE_SOURCE == "push"'
       when: manual
   script:
-    - scp -r -o StrictHostKeyChecking=no ./selenoid $SSH_USER@$SSH_AMD_MACHINE_244:~
-    - ssh $SSH_USER@$SSH_AMD_MACHINE_244 "export LIMIT=1 && cd ~/selenoid && docker-compose down && docker-compose rm -f && docker-compose up -d"
-    - ssh $SSH_USER@$SSH_AMD_MACHINE_244 "cat ~/selenoid/config/browsers.json  | jq -r '..|.image?|strings' | xargs -I{} docker pull {}"
+    - scp -r -o StrictHostKeyChecking=no ./selenoid $SSH_USER_HOSTKEY@$SSH_MACHINE_HOSTKEY:~
+    - ssh $SSH_USER_HOSTKEY@$SSH_MACHINE_HOSTKEY "export LIMIT=1 && cd ~/selenoid && docker-compose down && docker-compose rm -f && docker-compose up -d"
+    - ssh $SSH_USER_HOSTKEY@$SSH_MACHINE_HOSTKEY "cat ~/selenoid/config/browsers.json  | jq -r '..|.image?|strings' | xargs -I{} docker pull {}"
