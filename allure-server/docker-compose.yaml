@@ -26,10 +26,10 @@ services:
     container_name: allure-postgres-db
     image: postgres:14.2-alpine3.15
     environment:
-      - TZ=Europe/Moscow
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=allure
+      TZ: Europe/Moscow
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: allure
     volumes:
       - volume_postgres:/var/lib/postgresql/data
     ports:
