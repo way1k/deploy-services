@@ -24,7 +24,7 @@ services:
 
   postgres:
     container_name: allure-postgres-db
-    image: postgres:14.1-alpine3.14
+    image: postgres:11-alpine3.15
     environment:
       - TZ=Europe/Moscow
       - POSTGRES_USER=${POSTGRES_USER}
