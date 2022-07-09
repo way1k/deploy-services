@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+
+  allure:
+    image: "frankescobar/allure-docker-service"
+    environment:
+      CHECK_RESULTS_EVERY_SECONDS: ${CHECK_RESULTS_EVERY_SECONDS}
+      KEEP_HISTORY: ${KEEP_HISTORY}
+      KEEP_HISTORY_LATEST: ${KEEP_HISTORY_LATEST}
+    ports:
+      - ${ALLURE_DOCKER_SERVICE_API_PORT}:5050
+    volumes:
+      - ${PWD}/projects:/app/projects
+
+  allure-ui:
+    image: "frankescobar/allure-docker-service-ui"
+    environment:
+      ALLURE_DOCKER_PUBLIC_API_URL: "http://localhost:$ALLURE_DOCEKR_SERVICE_API_PORT"
+      ALLURE_DOCKER_PUBLIC_API_URL_PREFIX: ""
+    ports:
+      - ${ALLURE_DOCKER_SERVICE_UI_PORT}:5252

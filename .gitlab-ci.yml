@@ -14,13 +14,29 @@ stages:
 
 ### Deployment jobs ###
 
+allure-docker-service:
+  stage: deploy
+  extends: .ssh-base
+  tags:
+    - common-170
+  variables:
+    SSH_PRIVATE_KEY: $SSH_PRIVATE_KEY_HOSTKEY
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+      when: manual
+  script:
+    - rsync -avzP ./allure-docker-service/ $SSH_USER_HOSTKEY@$SSH_MACHINE_HOSTKEY:~/allure-docker-service
+    - ssh $SSH_USER_HOSTKEY@$SSH_MACHINE_HOSTKEY "cd ~/allure-docker-service && docker-compose down && docker-compose up -d"
+
 allure-server:
   stage: deploy
   extends: .ssh-base
   tags:
     - common-170
   variables:
-    SSH_PRIVATE_KEY: $SSH_AMD_PRIVATE_KEY_89
+    SSH_PRIVATE_KEY: $SSH_PRIVATE_KEY_HOSTKEY
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "merge_request_event"'
       when: never
@@ -36,7 +52,7 @@ deploy-selenoid:
   tags:
     - common-170
   variables:
-    SSH_PRIVATE_KEY: $SSH_AMD_PRIVATE_KEY_244
+    SSH_PRIVATE_KEY: $SSH_PRIVATE_KEY_HOSTKEY
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "merge_request_event"'
       when: never
