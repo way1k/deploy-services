@@ -16,7 +16,7 @@ services:
   allure-ui:
     image: "frankescobar/allure-docker-service-ui:7.0.3"
     environment:
-      ALLURE_DOCKER_PUBLIC_API_URL: "https://31.207.44.170:5050"
+      ALLURE_DOCKER_PUBLIC_API_URL: "http://allure:5050"
       ALLURE_DOCKER_PUBLIC_API_URL_PREFIX: ""
     ports:
       - ${ALLURE_DOCKER_SERVICE_UI_PORT}:5252
