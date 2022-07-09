@@ -27,7 +27,6 @@ allure-docker-service:
     - if: '$CI_PIPELINE_SOURCE == "push"'
       when: manual
   script:
-    - printenv
     - rsync -avzP ./allure-docker-service/ $SSH_USER_HOSTKEY@$SSH_MACHINE_HOSTKEY:~/allure-docker-service
     - ssh $SSH_USER_HOSTKEY@$SSH_MACHINE_HOSTKEY "cd ~/allure-docker-service && docker-compose down && docker-compose up -d"
 
