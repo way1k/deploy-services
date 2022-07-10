@@ -1,10 +1,10 @@
 {
   "chrome": {
-    "default": "103.0",
+    "default": "101.0",
     "versions": {
       "101.0": {
         "tmpfs": {"/tmp": "size=256m"},
-        "image": "selenoid/chrome:103.0",
+        "image": "selenoid/chrome:101.0",
         "port": "4444",
         "path": "/",
         "env" : ["TZ=Europe/Moscow"],
@@ -23,7 +23,7 @@
   "firefox": {
     "default": "101.0",
     "versions": {
-      "87.0": {
+      "101.0": {
         "tmpfs": {"/tmp": "size=256m"},
         "image": "selenoid/firefox:101.0",
         "port": "4444",
