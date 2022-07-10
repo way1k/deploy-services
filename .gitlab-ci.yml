@@ -61,4 +61,4 @@ deploy-selenoid:
   script:
     - scp -r -o StrictHostKeyChecking=no ./selenoid $SSH_USER_HOSTKEY@$SSH_MACHINE_HOSTKEY:~
     - ssh $SSH_USER_HOSTKEY@$SSH_MACHINE_HOSTKEY "export LIMIT=1 && cd ~/selenoid && docker-compose down && docker-compose rm -f && docker-compose up -d"
-    - ssh $SSH_USER_HOSTKEY@$SSH_MACHINE_HOSTKEY "cat ~/selenoid/config/browsers.json  | jq -r '..|.image?|strings' | xargs -I{} docker pull {}"
+    - ssh $SSH_USER_HOSTKEY@$SSH_MACHINE_HOSTKEY "cat ~/selenoid/config/browsers.json | jq -r '..|.image?|strings' | xargs -I{} docker pull {}"
