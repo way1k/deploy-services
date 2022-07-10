@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   selenoid:
-    image: aerokube/selenoid:1.10.6
+    image: aerokube/selenoid:1.10.7
     container_name: selenoid
     network_mode: bridge
     ports:
@@ -23,7 +23,7 @@ services:
     restart: always
 
   selenoid-ui:
-    image: aerokube/selenoid-ui:1.10.4
+    image: aerokube/selenoid-ui:1.10.5
     container_name: selenoid-ui
     network_mode: bridge
     links:
