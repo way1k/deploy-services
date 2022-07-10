@@ -9,6 +9,10 @@ services:
       CHECK_RESULTS_EVERY_SECONDS: ${CHECK_RESULTS_EVERY_SECONDS}
       KEEP_HISTORY: ${KEEP_HISTORY}
       KEEP_HISTORY_LATEST: ${KEEP_HISTORY_LATEST}
+      TLS: ${TSL}
+      SECURITY_USER: ${SECURITY_USER}
+      SECURITY_PASS: ${SECURITY_PASS}
+      SECURITY_ENABLED: ${SECURITY_ENABLED}
     ports:
       - ${ALLURE_DOCKER_SERVICE_API_PORT}:5050
     volumes:
@@ -24,26 +28,3 @@ services:
       - ${ALLURE_DOCKER_SERVICE_UI_PORT}:5252
     depends_on:
       - allure
-#
-#  allure:
-#    image: "frankescobar/allure-docker-service:latest"
-#    user: 1000:1000
-#    environment:
-#      CHECK_RESULTS_EVERY_SECONDS: NONE
-#      KEEP_HISTORY: 1
-#      KEEP_HISTORY_LATEST: 50
-#    ports:
-#      - "5050:5050"
-#    volumes:
-#      - ${PWD}/projects:/app/projects
-#
-#  allure-ui:
-#    image: "frankescobar/allure-docker-service-ui:latest"
-#    user: 1000:1000
-#    environment:
-#      ALLURE_DOCKER_PUBLIC_API_URL: "http://31.207.44.170:5050"
-#      ALLURE_DOCKER_PUBLIC_API_URL_PREFIX: ""
-#    ports:
-#      - "5252:5252"
-#    depends_on:
-#      - allure
