@@ -1,18 +1,18 @@
 {
   "chrome": {
-    "default": "92.0",
+    "default": "103.0",
     "versions": {
-      "90.0": {
+      "101.0": {
         "tmpfs": {"/tmp": "size=256m"},
-        "image": "selenoid/chrome:90.0",
+        "image": "selenoid/chrome:103.0",
         "port": "4444",
         "path": "/",
         "env" : ["TZ=Europe/Moscow"],
         "shmSize" : 268435456
       },
-      "92.0": {
+      "102.0": {
         "tmpfs": {"/tmp": "size=256m"},
-        "image": "selenoid/chrome:92.0",
+        "image": "selenoid/chrome:102.0",
         "port": "4444",
         "path": "/",
         "env" : ["TZ=Europe/Moscow"],
@@ -21,11 +21,11 @@
     }
   },
   "firefox": {
-    "default": "87.0",
+    "default": "101.0",
     "versions": {
       "87.0": {
         "tmpfs": {"/tmp": "size=256m"},
-        "image": "selenoid/firefox:87.0",
+        "image": "selenoid/firefox:101.0",
         "port": "4444",
         "path": "/wd/hub",
         "env" : ["TZ=Europe/Moscow"],

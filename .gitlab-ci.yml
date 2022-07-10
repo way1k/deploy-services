@@ -28,7 +28,6 @@ allure-docker-service:
       when: manual
   script:
     - rsync -avzP ./allure-docker-service/ $SSH_USER_HOSTKEY_ALLURE@$SSH_MACHINE_HOSTKEY:~/allure-docker-service
-    - ssh $SSH_USER_HOSTKEY_ALLURE@$SSH_MACHINE_HOSTKEY "id"
     - ssh $SSH_USER_HOSTKEY_ALLURE@$SSH_MACHINE_HOSTKEY "cd ~/allure-docker-service && docker-compose down && docker-compose up -d"
 
 allure-server:
