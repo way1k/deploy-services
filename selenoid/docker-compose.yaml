@@ -17,8 +17,8 @@ services:
               "-retry-count", "15",
               "-service-startup-timeout", "2m",
               "-session-attempt-timeout", "3m",
-              "-timeout", "7m",
-              "-vnc", "true"]
+              "-timeout", "7m"
+    ]
     environment:
       - TZ="Europe/Moscow"
     restart: always
