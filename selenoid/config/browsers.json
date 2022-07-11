@@ -4,7 +4,7 @@
     "versions": {
       "101.0": {
         "tmpfs": {"/tmp": "size=256m"},
-        "image": "selenoid/chrome:101.0",
+        "image": "selenoid/vnc_chrome:101.0",
         "port": "4444",
         "path": "/",
         "env" : ["TZ=Europe/Moscow"],
@@ -12,7 +12,7 @@
       },
       "102.0": {
         "tmpfs": {"/tmp": "size=256m"},
-        "image": "selenoid/chrome:102.0",
+        "image": "selenoid/vnc_chrome:102.0",
         "port": "4444",
         "path": "/",
         "env" : ["TZ=Europe/Moscow"],
@@ -25,7 +25,7 @@
     "versions": {
       "101.0": {
         "tmpfs": {"/tmp": "size=256m"},
-        "image": "selenoid/firefox:101.0",
+        "image": "selenoid/vnc_firefox:101.0",
         "port": "4444",
         "path": "/wd/hub",
         "env" : ["TZ=Europe/Moscow"],
