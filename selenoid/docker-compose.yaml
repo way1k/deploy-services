@@ -13,11 +13,12 @@ services:
     command: ["-conf", "/etc/selenoid/browsers.json",
               "-limit", "${LIMIT}",
               "-cpu", "1",
-              "-mem", "400m",
+              "-mem", "500m",
               "-retry-count", "15",
               "-service-startup-timeout", "2m",
               "-session-attempt-timeout", "3m",
-              "-timeout", "7m"]
+              "-timeout", "7m",
+              "-vnc", "true"]
     environment:
       - TZ="Europe/Moscow"
     restart: always
