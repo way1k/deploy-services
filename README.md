@@ -1,5 +1,5 @@
 # Deploy Services
 
-Репозиторий содержит настройки и CI для развертывания сервисов.
+Repository contains settings for deploy services
 
 
